@@ -200,11 +200,12 @@ export function createBrowserRouter(
     basename?: string;
     hydrationData?: HydrationState;
     window?: Window;
+    history?: BrowserHistory;
   }
 ): RemixRouter {
   return createRouter({
     basename: opts?.basename,
-    history: createBrowserHistory({ window: opts?.window }),
+    history: opts?.history || createBrowserHistory({ window: opts?.window }),
     hydrationData: opts?.hydrationData || window?.__staticRouterHydrationData,
     routes: enhanceManualRouteObjects(routes),
   }).initialize();
